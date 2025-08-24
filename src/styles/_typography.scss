@@ -1,0 +1,32 @@
+// -------------------------
+// Font Family
+// -------------------------
+$font-primary: "Noto Sans", "Noto Sans KR", sans-serif;
+
+// -------------------------
+// Font Sizes (px 단위)
+// -------------------------
+$font-xs: 1.2rem; // 보조 텍스트, 날짜
+$font-sm: 1.4rem; // 설명, 작은 버튼
+$font-md: 1.6rem; // 본문, 카드 텍스트
+$font-lg: 1.8rem; // 섹션 제목, 리뷰 제목
+$font-xl: 2rem; // 메인 화면 타이틀
+$font-xxl: 2.4rem; // 앱 이름, 큰 타이틀
+
+// -------------------------
+// Font Weights
+// -------------------------
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+// -------------------------
+// Line Heights
+// -------------------------
+$line-xs: 1.6rem;
+$line-sm: 2rem;
+$line-md: 2.4rem;
+$line-lg: 2.8rem;
+$line-xl: 3.2rem;
+$line-xxl: 3.6rem;
