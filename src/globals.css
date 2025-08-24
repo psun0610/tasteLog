@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+
+  /* Primary Colors */
+  --primary: #ff7f50; /* 코랄 레드 */
+  --primary-foreground: white;
+
+  /* Secondary / Accent Colors */
+  --secondary: #ffb07c; /* 살구 */
+  --secondary-foreground: white;
+
+  /* Neutral / Background */
+  --neutral: #f5e0c3; /* 밀크티 베이지 */
+  --neutral-foreground: #333333;
+
+  /* Warning / Alert */
+  --warning: #ffd166;
+  --warning-foreground: #333333;
+
+  /* Success */
+  --success: #6bcb77;
+  --success-foreground: white;
+
+  /* Info */
+  --info: #4d96ff;
+  --info-foreground: white;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-neutral: var(--neutral);
+  --color-neutral-foreground: var(--neutral-foreground);
+
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+}
