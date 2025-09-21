@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {/* 헤더 */}
         <Header />
         {/* 본문 */}
-        <main className="flex-1 overflow-auto p-4">{children}</main>
+        <main className="flex-1 overflow-auto">{children}</main>
         {/* 푸터 */}
         <Navbar />
       </div>
