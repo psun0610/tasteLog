@@ -1,12 +1,13 @@
-import KakaoMap from "@/components/custom/kakaoMap";
-import Layout from "@/components/custom/layout";
+import Button from '@/components/button'
+import KakaoMap from '@/components/kakaoMap'
+import Layout from '@/layouts'
 
 export const App = () => {
-  return (
-    <Layout>
-      <KakaoMap />
-    </Layout>
-  );
-};
+    return (
+        <Layout>
+            <Button>Button</Button>
+        </Layout>
+    )
+}
 
-export default App;
+export default App

@@ -1,0 +1,39 @@
+// --------------------
+// Primary / Base
+// --------------------
+$color-primary: #ffb07c; // 부드러운 살구 오렌지
+$color-secondary: #95d5b2; // 톤 다운 민트
+$color-accent: #ff6b6b; // 포인트, 튀지 않음
+$bg-cream: #fff5eb; // 부드러운 크림
+
+// --------------------
+// Gray Scale (검정→연회색)
+// --------------------
+$gray-900: #1a1a1a;
+$gray-800: #2b2b2b;
+$gray-700: #3b3b3b;
+$gray-600: #4d4d4d;
+$gray-500: #5e5e5e;
+$gray-400: #7a7a7a;
+$gray-300: #a0a0a0;
+$gray-200: #c4c4c4;
+$gray-100: #e0e0e0;
+
+// --------------------
+// Optional feedback colors
+// --------------------
+$color-success: #6bcb77; // 성공
+$color-warning: #ffd166; // 경고
+$color-error: #ef6767; // 오류
+$color-info: #4d96ff; // 정보
+
+// --------------------
+// Text Colors
+// --------------------
+$text-primary: $gray-900;
+$text-secondary: $gray-700;
+$text-sub: $gray-500;
+$text-info: $color-info;
+$text-success: $color-success;
+$text-warning: $color-warning;
+$text-error: $color-error;

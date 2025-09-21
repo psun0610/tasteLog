@@ -1,0 +1,32 @@
+@import '@/assets/styles/variables.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-size: 62.5%; // 16px * 0.625 = 10px
+    line-height: 1.5;
+    font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+    color: $text-primary;
+    background-color: $bg-cream;
+}
+
+a {
+    color: $color-primary; // 메인 색상 사용
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: $color-accent; // 포인트 색상으로 변환
+        text-decoration: underline;
+    }
+}
+
+ul,
+ol {
+    list-style: none;
+}
