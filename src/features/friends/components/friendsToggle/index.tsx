@@ -1,21 +1,53 @@
+import Modal from '@/components/modal'
 import './styles.scss'
+import Toggle from '@/components/toggle'
 
-const FriendsToggle = () => {
+interface FriendsToggleProps {
+    isOpen: boolean
+    onClose: () => void
+}
+
+const FriendsToggle = ({ isOpen, onClose }: FriendsToggleProps) => {
+    interface IFriend {
+        id: number
+        name: string
+        avatar: string
+    }
+
+    // 더미 데이터
+    const friendsList = [
+        {
+            id: 1,
+            name: '이름',
+            avatar: 'https://via.placeholder.com/150',
+        },
+    ]
+
+    const friendsListRender = (friend: IFriend) => {
+        return (
+            <li key={friend.id}>
+                <div className="profile">
+                    <img src={friend.avatar} alt="avatar" />
+                    <p>{friend.name}</p>
+                </div>
+                <Toggle />
+            </li>
+        )
+    }
     return (
-        <div id="friends-toggle">
-            <h1 className="friends-toggle-header">친구 목록</h1>
-            <p className="friends-toggle-description">
-                친구들의 리뷰를 키고 끌 수 있어요!
-            </p>
-            <div className="friends-toggle-list">
-                <ul>
-                    <li>
-                        <img src={''} alt="avatar" />
-                        <p>이름</p>
-                    </li>
-                </ul>
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <div id="friends-toggle">
+                <div className="header">
+                    <h1>친구 목록</h1>
+                    <p>친구들의 리뷰를 키고 끌 수 있어요!</p>
+                </div>
+                <div className="list">
+                    <ul>
+                        {friendsList.map((friend) => friendsListRender(friend))}
+                    </ul>
+                </div>
             </div>
-        </div>
+        </Modal>
     )
 }
 
