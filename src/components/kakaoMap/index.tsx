@@ -32,7 +32,7 @@ const KakaoMap = () => {
                 marker.setMap(map)
             })
         }
-    }, [])
+    }, [kakaoKey])
 
     return <div ref={mapContainer} style={{ width: '100%', height: '100vh' }} />
 }
