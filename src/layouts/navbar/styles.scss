@@ -1,21 +1,22 @@
-.navbar {
+.nav-bar {
     background-color: $cream-000;
     box-shadow: 0 -0.2rem 1rem $cream-shadow-200;
 
     > ul {
         @include flex(space-around, center, null, 0.2rem);
+        height: 6rem;
 
         > li {
             @include flex(center, null, column, 0.5rem);
-            padding: 1rem 0 0.5rem;
+            padding-top: 0.5rem;
             transition: all 0.2s ease;
 
             > svg {
-                font-size: 2rem;
+                font-size: 1.7rem;
             }
 
             > p {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             &:not(.active) {

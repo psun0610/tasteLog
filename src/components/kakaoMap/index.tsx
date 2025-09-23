@@ -28,7 +28,7 @@ const KakaoMap = () => {
         }
     }, [])
 
-    return <div ref={mapContainer} style={{ width: '100%', height: '400px' }} />
+    return <div ref={mapContainer} style={{ width: '100%', height: '100vh' }} />
 }
 
 export default KakaoMap
