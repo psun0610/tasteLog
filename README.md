@@ -1,69 +1,22 @@
-# React + TypeScript + Vite
+# 디렉토리 구조
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+src/
+ ├─ assets/         # 정적 파일 (이미지, 폰트, 아이콘 등)
+ ├─ components/     # 재사용 가능한 UI 컴포넌트 (버튼, 모달, 인풋 등 범용 컴포넌트)
+ ├─ layouts/        # Navbar, Footer 등 기본 레이아웃
+ ├─ features/       # 도메인별 기능 단위 (예: auth, posts, profile)
+ │   └─ auth/
+ │       ├─ components/ # auth 전용 UI
+ │       ├─ hooks/      # auth 관련 훅
+ │       ├─ services/   # API 호출, 상태 관리
+ │       └─ index.ts    # auth 관련 export 모음
+ ├─ hooks/         # 전역적으로 쓰이는 커스텀 훅
+ ├─ pages/         # 라우트 단위 페이지 컴포넌트
+ ├─ services/      # API 통신 (axios/fetch), 클라이언트
+ ├─ store/         # 전역 상태 관리 (zustand, redux 등)
+ ├─ styles/        # 글로벌 스타일
+ ├─ utils/         # 유틸 함수, 헬퍼 함수
+ ├─ App.tsx
+ └─ main.tsx
 ```

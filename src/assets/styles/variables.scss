@@ -1,0 +1,68 @@
+// --------------------
+// Cream Scale (#fff5eb 기준, 300 → 진하고 연한 톤)
+// --------------------
+$cream-000: #fffdfb;
+$cream-100: #fff9f3; // 가장 연한 톤
+$cream-200: #fff6e8;
+$cream-300: #fff5eb; // 기준 배경색
+$cream-400: #ffe8d4;
+$cream-500: #ffd8b8;
+$cream-600: #ffc89c;
+$cream-700: #ffb97f;
+$cream-800: #ffaa63;
+$cream-900: #ff9b47; // 가장 진한 톤
+
+// --------------------
+// Gray Scale (검정→연회색)
+// --------------------
+$gray-900: #1a1a1a;
+$gray-800: #2b2b2b;
+$gray-700: #3b3b3b;
+$gray-600: #4d4d4d;
+$gray-500: hsl(0, 0%, 37%);
+$gray-400: #7a7a7a;
+$gray-300: #a0a0a0;
+$gray-200: #c4c4c4;
+$gray-100: #e0e0e0;
+
+// --------------------
+// Cream Shadow Scale (회색 혼합, 투명도 없이)
+// --------------------
+$cream-shadow-100: mix($gray-200, $cream-100, 10%); // 아주 연한 그림자
+$cream-shadow-200: mix($gray-300, $cream-200, 15%);
+$cream-shadow-300: mix($gray-400, $cream-300, 20%); // 기본 그림자
+$cream-shadow-400: mix($gray-500, $cream-400, 25%);
+$cream-shadow-500: mix($gray-600, $cream-500, 30%);
+$cream-shadow-600: mix($gray-700, $cream-600, 35%);
+$cream-shadow-700: mix($gray-800, $cream-700, 40%);
+$cream-shadow-800: mix($gray-900, $cream-800, 45%);
+$cream-shadow-900: mix($gray-900, $cream-900, 50%); // 가장 진한 그림자
+
+// --------------------
+// Optional feedback colors
+// --------------------
+$color-success: #6bcb77; // 성공
+$color-warning: #ffd166; // 경고
+$color-error: #ff6b6b; // 오류
+$color-info: #6ba9ff; // 정보
+
+// --------------------
+// Primary / Base
+// --------------------
+$color-primary: #ffb07c; // 부드러운 살구 오렌지
+$color-secondary: #95d5b2; // 톤 다운 민트
+$color-accent: #ff6b6b; // 포인트, 튀지 않음
+$color-gray: $gray-300; // 회색
+$bg-cream: $cream-100; // 부드러운 크림
+
+// --------------------
+// Text Colors
+// --------------------
+$text-primary: $gray-900;
+$text-secondary: $gray-700;
+$text-white: $cream-100;
+$text-sub: $gray-400;
+$text-info: $color-info;
+$text-success: $color-success;
+$text-warning: $color-warning;
+$text-error: $color-error;
