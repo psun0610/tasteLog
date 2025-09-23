@@ -4,6 +4,12 @@ const KakaoMap = () => {
     const mapContainer = useRef<HTMLDivElement>(null)
     const kakaoKey = import.meta.env.VITE_KAKAO_JS_KEY
 
+    if (!kakaoKey) {
+        console.error('KAKAO_JS_KEY is not set')
+    } else {
+        console.log('KAKAO_JS_KEY', kakaoKey)
+    }
+
     useEffect(() => {
         const script = document.createElement('script')
         script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&autoload=false`
