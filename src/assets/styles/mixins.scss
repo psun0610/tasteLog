@@ -1,0 +1,10 @@
+@mixin flex($justify: center, $align: null, $direction: row, $gap: 0) {
+    display: flex;
+    flex-direction: $direction;
+
+    // 만약 align이 null이면 $justify 값 사용
+    justify-content: $justify;
+    align-items: if($align == null, $justify, $align);
+
+    gap: $gap;
+}

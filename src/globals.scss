@@ -1,14 +1,19 @@
+@import '@/assets/styles/mixins.scss';
 @import '@/assets/styles/variables.scss';
 
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
+html {
     font-size: 62.5%; // 16px * 0.625 = 10px
+}
+body {
+    font-size: 1.4rem;
     line-height: 1.5;
     font-family: 'Noto Sans KR', 'Roboto', sans-serif;
     color: $text-primary;

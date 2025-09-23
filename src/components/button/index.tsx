@@ -1,15 +1,33 @@
+import classNames from 'classnames'
 import './styles.scss'
 
 interface ButtonProps {
-    children: React.ReactNode
-    classNames?: string
+    text?: string
+    children?: React.ReactNode
+    color?: 'primary' | 'green' | 'red' | 'gray' | 'blue'
+    border?: boolean
+    className?: string
     props?: React.ButtonHTMLAttributes<HTMLButtonElement>
 }
 
-const Button = ({ classNames, children, ...props }: ButtonProps) => {
+const Button = ({
+    color = 'primary',
+    border = false,
+    className,
+    text,
+    children,
+    ...props
+}: ButtonProps) => {
     return (
-        <button className={classNames} {...props}>
-            {children}
+        <button
+            className={classNames(color, {
+                border: border,
+                className: className,
+            })}
+            {...props}
+        >
+            {children && children}
+            {text}
         </button>
     )
 }

@@ -1,11 +1,15 @@
+import { Outlet } from 'react-router-dom'
 import Header from './header'
 import NavBar from './navbar'
+import './styles.scss'
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = () => {
     return (
-        <div>
-            <Header />
-            <main>{children}</main>
+        <div id="mainLayout">
+            {/* <Header /> */}
+            <main>
+                <Outlet />
+            </main>
             <NavBar />
         </div>
     )

@@ -1,12 +1,11 @@
-import Button from '@/components/button'
-import KakaoMap from '@/components/kakaoMap'
-import Layout from '@/layouts'
+import { BrowserRouter } from 'react-router-dom'
+import Router from './router'
 
 export const App = () => {
     return (
-        <Layout>
-            <Button>Button</Button>
-        </Layout>
+        <BrowserRouter>
+            <Router />
+        </BrowserRouter>
     )
 }
 
