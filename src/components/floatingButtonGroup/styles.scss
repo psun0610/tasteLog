@@ -1,0 +1,77 @@
+.floating-button-group {
+    position: fixed;
+    bottom: calc(6rem + 2rem);
+    right: 2rem;
+    z-index: 1000;
+
+    .fab-main {
+        @include flex();
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 50%;
+        background-color: $color-accent;
+        color: $text-white;
+        font-size: 1.8rem;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+        transition: transform 0.3s;
+        z-index: 10;
+        position: relative; /* main 버튼 기준 */
+        font-size: 2.4rem;
+    }
+
+    .fab-item-container {
+        position: absolute;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0;
+        transform: translateY(0);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+
+        button {
+            @include flex();
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            background-color: $bg-cream;
+            color: $color-accent;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.25rem;
+            font-size: 2.4rem;
+        }
+    }
+
+    &.open {
+        .fab-item-container {
+            opacity: 1;
+            transform: translateY(calc(-1 * var(--button-index) * 4rem));
+        }
+
+        .fab-main {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.floating-button-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: $gray-900; // 회색 투명
+    z-index: 5; // main 버튼보다 아래
+    opacity: 0;
+    top: -1000rem;
+    bottom: -1000rem;
+    transition: opacity 0.3s ease;
+
+    &.open {
+        opacity: 0.3;
+        top: 0;
+        bottom: 0;
+    }
+}

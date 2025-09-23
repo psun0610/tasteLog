@@ -14,8 +14,8 @@ const Router = () => {
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<Pages.Home />} />
-                    <Route path="*" element={<Pages.NotFound />} />
                 </Route>
+                <Route path="*" element={<Pages.NotFound />} />
             </Routes>
         </Suspense>
     )
