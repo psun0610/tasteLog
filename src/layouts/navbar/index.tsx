@@ -32,7 +32,7 @@ const NavBar = () => {
         },
         {
             icon: <FiUsers />,
-            path: '/friend',
+            path: '/friends',
             text: '친구목록',
         },
         {
@@ -44,7 +44,7 @@ const NavBar = () => {
 
     // TODO: active 조건 수정
     return (
-        <nav className="navbar">
+        <nav className="nav-bar">
             <ul>
                 {navItems.map((item) => (
                     <li

@@ -8,6 +8,7 @@ interface ButtonProps {
     border?: boolean
     className?: string
     props?: React.ButtonHTMLAttributes<HTMLButtonElement>
+    onClick?: () => void
 }
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
     className,
     text,
     children,
+    onClick,
     ...props
 }: ButtonProps) => {
     return (
@@ -24,6 +26,7 @@ const Button = ({
                 border: border,
                 className: className,
             })}
+            onClick={onClick}
             {...props}
         >
             {children && children}
