@@ -1,16 +1,19 @@
+import Button from '@/components/button'
 import FloatingButtonGroup from '@/components/floatingButtonGroup'
+import KakaoMap from '@/components/kakaoMap'
 import FriendsToggle from '@/features/friends/components/friendsToggle'
 import useHomeFloatingButton from '@/hooks/useHomeFloatingButton'
 
-const Home = () => {
+const Map = () => {
     const { buttonList, mainIcon, isToggleOpen, setIsToggleOpen } = useHomeFloatingButton()
 
     return (
-        <div id="home">
+        <div id="map">
+            <KakaoMap />
             <FloatingButtonGroup mainIcon={mainIcon} buttons={buttonList} />
             <FriendsToggle isOpen={isToggleOpen} onClose={() => setIsToggleOpen(false)} />
         </div>
     )
 }
 
-export default Home
+export default Map

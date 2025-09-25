@@ -1,44 +1,36 @@
 import classNames from 'classnames'
-import {
-    FiHome,
-    FiMap,
-    FiStar,
-    FiServer,
-    FiHeart,
-    FiSettings,
-    FiUsers,
-} from 'react-icons/fi'
-import { useLocation } from 'react-router-dom'
+import { FiHome, FiMap, FiSearch, FiUser, FiBell } from 'react-icons/fi'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './styles.scss'
 
 const NavBar = () => {
     const location = useLocation()
+    const navigate = useNavigate()
     const navItems = [
         {
-            icon: <FiServer />,
-            path: '/list',
-            text: '목록',
-        },
-        {
-            icon: <FiHeart />,
-            path: '/star',
-            text: '즐겨찾기',
-        },
-        {
             icon: <FiHome />,
-            // icon: <FiMap />,
             path: '/',
             text: '홈',
         },
         {
-            icon: <FiUsers />,
-            path: '/friends',
-            text: '친구목록',
+            icon: <FiMap />,
+            path: '/map',
+            text: '지도',
         },
         {
-            icon: <FiSettings />,
-            path: '/settings',
-            text: '설정',
+            icon: <FiSearch />,
+            path: '/discover',
+            text: '탐색',
+        },
+        {
+            icon: <FiBell />,
+            path: '/noti',
+            text: '알림',
+        },
+        {
+            icon: <FiUser />,
+            path: '/myPage',
+            text: '마이',
         },
     ]
 
@@ -52,6 +44,7 @@ const NavBar = () => {
                         className={classNames({
                             active: location.pathname === item.path,
                         })}
+                        onClick={() => navigate(item.path)}
                     >
                         {item.icon}
                         <p>{item.text}</p>
