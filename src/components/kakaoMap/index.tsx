@@ -6,6 +6,8 @@ const KakaoMap = () => {
 
     if (!kakaoKey) {
         console.error('KAKAO_JS_KEY is not set')
+    } else {
+        console.log('KAKAO_JS_KEY', kakaoKey)
     }
 
     useEffect(() => {
