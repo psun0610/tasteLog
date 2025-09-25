@@ -23,8 +23,8 @@
 
     .fab-item-container {
         position: absolute;
+        display: none;
         right: 0;
-        display: flex;
         flex-direction: column;
         align-items: center;
         opacity: 0;
@@ -49,6 +49,7 @@
     &.open {
         .fab-item-container {
             opacity: 1;
+            display: flex;
             transform: translateY(calc(-1 * var(--button-index) * 4rem));
         }
 
