@@ -12,10 +12,7 @@ interface FloatingButtonGroupProps {
     buttons: IFloatingButton[]
 }
 
-const FloatingButtonGroup = ({
-    mainIcon,
-    buttons,
-}: FloatingButtonGroupProps) => {
+const FloatingButtonGroup = ({ mainIcon, buttons }: FloatingButtonGroupProps) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleButtons = () => setIsOpen(!isOpen)
@@ -54,9 +51,7 @@ const FloatingButtonGroup = ({
                             bottom: `${calcBottom(index)}rem`,
                         }}
                     >
-                        <button onClick={() => handleClick(btn.onClick)}>
-                            {btn.icon}
-                        </button>
+                        <button onClick={() => handleClick(btn.onClick)}>{btn.icon}</button>
                     </div>
                 ))}
 

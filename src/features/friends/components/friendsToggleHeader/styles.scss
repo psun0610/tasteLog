@@ -1,0 +1,99 @@
+.friends-toggle-header {
+    width: 100%;
+    padding: 1rem;
+    background-color: $cream-000;
+    box-shadow: 0 0.2rem 1rem $cream-shadow-200;
+    position: relative;
+
+    // 오른쪽에 흐리게 하는 효과
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0.9rem;
+        width: 2.3rem;
+        height: 100%;
+        background: linear-gradient(to left, $cream-000, transparent);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .expand-button {
+        position: absolute;
+        bottom: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $cream-000;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0px 0.2em 1rem -0.3rem $cream-shadow-300;
+        border-radius: 0 0 1.5rem 1.5rem;
+        width: 5rem;
+        height: 2rem;
+        font-size: 1.8rem;
+        color: $text-secondary;
+
+        svg {
+            transition: transform 0.3s ease;
+        }
+    }
+
+    > ul {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: min-content;
+        gap: 2rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: 7rem;
+        transition: height 0.3s ease;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        & {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .friends-item {
+            @include flex(center, center, column, 0.4rem);
+
+            > img {
+                width: 5rem;
+                height: 5rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            > p {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &.expanded {
+        > ul {
+            height: 20rem;
+            grid-auto-flow: row;
+            grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+
+    &.closing {
+        > ul {
+            grid-auto-flow: row;
+            grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    }
+}

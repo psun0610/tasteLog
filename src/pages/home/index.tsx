@@ -1,14 +1,11 @@
-import FloatingButtonGroup from '@/components/floatingButtonGroup'
-import FriendsToggle from '@/features/friends/components/friendsToggle'
-import useHomeFloatingButton from '@/hooks/useHomeFloatingButton'
+import HomeFloatingButton from '@/layouts/homeFloatingButton'
+import FriendsToggleHeader from '@/features/friends/components/friendsToggleHeader'
 
 const Home = () => {
-    const { buttonList, mainIcon, isToggleOpen, setIsToggleOpen } = useHomeFloatingButton()
-
     return (
         <div id="home">
-            <FloatingButtonGroup mainIcon={mainIcon} buttons={buttonList} />
-            <FriendsToggle isOpen={isToggleOpen} onClose={() => setIsToggleOpen(false)} />
+            <FriendsToggleHeader />
+            <HomeFloatingButton />
         </div>
     )
 }
