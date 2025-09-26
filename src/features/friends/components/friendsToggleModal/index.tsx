@@ -2,12 +2,12 @@ import Modal from '@/components/modal'
 import './styles.scss'
 import Toggle from '@/components/toggle'
 
-interface FriendsToggleProps {
+interface FriendsToggleModalProps {
     isOpen: boolean
     onClose: () => void
 }
 
-const FriendsToggle = ({ isOpen, onClose }: FriendsToggleProps) => {
+const FriendsToggleModal = ({ isOpen, onClose }: FriendsToggleModalProps) => {
     interface IFriend {
         id: number
         name: string
@@ -42,13 +42,11 @@ const FriendsToggle = ({ isOpen, onClose }: FriendsToggleProps) => {
                     <p>친구들의 리뷰를 키고 끌 수 있어요!</p>
                 </div>
                 <div className="list">
-                    <ul>
-                        {friendsList.map((friend) => friendsListRender(friend))}
-                    </ul>
+                    <ul>{friendsList.map((friend) => friendsListRender(friend))}</ul>
                 </div>
             </div>
         </Modal>
     )
 }
 
-export default FriendsToggle
+export default FriendsToggleModal
