@@ -1,5 +1,6 @@
 import HomeFloatingButton from '@/layouts/homeFloatingButton'
 import FriendsToggleHeader from '@/features/friends/components/friendsToggleHeader'
+import Loading from '@/components/loading'
 
 const Home = () => {
     return (

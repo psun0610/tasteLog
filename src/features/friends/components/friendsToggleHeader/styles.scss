@@ -59,17 +59,26 @@
 
         .friends-item {
             @include flex(center, center, column, 0.4rem);
+            opacity: 0.5;
 
             > img {
                 width: 5rem;
                 height: 5rem;
                 border-radius: 50%;
                 object-fit: cover;
+
+                &.viewYn {
+                    opacity: 1;
+                }
             }
 
             > p {
                 font-size: 1.2rem;
                 font-weight: 500;
+            }
+
+            &.view {
+                opacity: 1;
             }
         }
     }
@@ -94,6 +103,38 @@
             grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
             overflow-x: hidden;
             overflow-y: auto;
+        }
+    }
+}
+
+#view-toggle-modal {
+    header {
+        @include flex($justify: flex-start, $align: center);
+        gap: 0.5rem;
+        margin-bottom: 1.3rem;
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .tooltip {
+            font-size: 1.3rem;
+        }
+    }
+    .content {
+        @include flex($justify: space-between, $align: center);
+
+        .profile {
+            @include flex($align: center);
+            gap: 1rem;
+
+            img {
+                width: 3rem;
+                height: 3rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
         }
     }
 }
