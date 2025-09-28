@@ -10,7 +10,6 @@ const Tooltip = ({ text }: { text: string }) => {
         const handleClickOutside = (event: MouseEvent) => {
             if (tooltipRef.current && !tooltipRef.current.contains(event.target as Node)) {
                 setIsOpen(false)
-                console.log('click outside')
             }
         }
 
