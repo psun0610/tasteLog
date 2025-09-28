@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import styles from './button.module.scss'
+import './styles.scss'
 
 interface ButtonProps {
     text?: string
@@ -14,7 +14,7 @@ interface ButtonProps {
 const Button = ({ color = 'primary', border = false, className, text, children, onClick, ...props }: ButtonProps) => {
     return (
         <button
-            className={classNames(styles[color], {
+            className={classNames('button', color, {
                 border: border,
                 className: className,
             })}

@@ -11,11 +11,7 @@ const HomeFloatingButton = () => {
             onClick: () => console.log('리뷰작성'),
         },
     ]
-    return (
-        <>
-            <FloatingButtonGroup mainIcon={mainIcon} buttons={buttonList} />
-        </>
-    )
+    return <FloatingButtonGroup mainIcon={mainIcon} buttons={buttonList} />
 }
 
 export default HomeFloatingButton

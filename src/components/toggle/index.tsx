@@ -12,7 +12,7 @@ const Toggle = ({ initial = false, onChange }: ToggleProps) => {
     const handleToggle = () => {
         const newValue = !isOn
         setIsOn(newValue)
-        onChange?.(newValue)
+        onChange && onChange(newValue)
     }
 
     return (

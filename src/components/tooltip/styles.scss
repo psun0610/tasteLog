@@ -1,0 +1,15 @@
+#tooltip {
+    position: relative;
+
+    .tooltip-content {
+        width: 15rem;
+        position: absolute;
+        top: 100%;
+        left: -50%;
+        background-color: $cream-000;
+        box-shadow: 0 0.2rem 0.5rem $cream-shadow-400;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        z-index: 1000;
+    }
+}
