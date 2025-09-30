@@ -112,35 +112,35 @@
             }
         }
     }
+}
 
-    #view-toggle-modal {
-        header {
-            @include flex($justify: flex-start, $align: center);
-            gap: 0.5rem;
-            margin-bottom: 1.3rem;
+#view-toggle-modal {
+    header {
+        @include flex($justify: flex-start, $align: center);
+        gap: 0.5rem;
+        margin-bottom: 1.3rem;
 
-            h1 {
-                font-size: 1.6rem;
-                font-weight: 600;
-            }
-
-            .tooltip {
-                font-size: 1.3rem;
-            }
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
         }
-        .content {
-            @include flex($justify: space-between, $align: center);
 
-            .profile {
-                @include flex($align: center);
-                gap: 1rem;
+        .tooltip {
+            font-size: 1.3rem;
+        }
+    }
+    .content {
+        @include flex($justify: space-between, $align: center);
 
-                img {
-                    width: 3rem;
-                    height: 3rem;
-                    border-radius: 50%;
-                    object-fit: cover;
-                }
+        .profile {
+            @include flex($align: center);
+            gap: 1rem;
+
+            img {
+                width: 3rem;
+                height: 3rem;
+                border-radius: 50%;
+                object-fit: cover;
             }
         }
     }
