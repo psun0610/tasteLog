@@ -3,8 +3,10 @@ import './styles.scss'
 import SectionBox from '@/layouts/sectionBox'
 import ReviewList from '@/features/review/components/reviewList'
 import { IReview } from '@/features/review/components/reviewList/types'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+    const navigate = useNavigate()
     const reviews: IReview[] = [
         {
             id: 1,
@@ -23,8 +25,7 @@ const Home = () => {
     ]
     return (
         <div id="home">
-            {/* <FriendsToggleHeader /> */}
-            <SectionBox title="친구들의 최근 리뷰">
+            <SectionBox title="친구들이 다녀온 맛집" titleClick={() => navigate('/reviewFeed')}>
                 <ReviewList reviews={reviews} />
             </SectionBox>
             <HomeFloatingButton />

@@ -63,7 +63,8 @@
             }
 
             .friends-item {
-                @include flex(center, center, column, 0.4rem);
+                @include flex(center, center, column);
+                gap: 0.4rem;
                 opacity: 0.5;
 
                 > img {

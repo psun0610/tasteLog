@@ -1,10 +1,16 @@
 import { FiChevronRight } from 'react-icons/fi'
 import './styles.scss'
 
-const SectionBox = ({ title, children }: { title: string; children: React.ReactNode }) => {
+interface SectionBoxProps {
+    title: string
+    children: React.ReactNode
+    titleClick: () => void
+}
+
+const SectionBox = ({ title, children, titleClick }: SectionBoxProps) => {
     return (
         <section id="section-box">
-            <header>
+            <header onClick={titleClick}>
                 <h1>{title}</h1>
                 <FiChevronRight />
             </header>
