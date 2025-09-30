@@ -10,31 +10,35 @@ const NavBar = () => {
         {
             icon: <FiHome />,
             path: '/',
-            text: '홈',
+            label: '홈',
+            activePaths: ['/', '/reviewFeed'],
         },
         {
             icon: <FiMap />,
             path: '/map',
-            text: '지도',
+            label: '지도',
+            activePaths: ['/map'],
         },
         {
             icon: <FiSearch />,
             path: '/discover',
-            text: '탐색',
+            label: '탐색',
+            activePaths: ['/discover'],
         },
         {
             icon: <FiBell />,
             path: '/noti',
-            text: '알림',
+            label: '알림',
+            activePaths: ['/noti'],
         },
         {
             icon: <FiUser />,
             path: '/myPage',
-            text: '마이',
+            label: '마이',
+            activePaths: ['/myPage'],
         },
     ]
 
-    // TODO: active 조건 수정
     return (
         <nav className="nav-bar">
             <ul>
@@ -42,12 +46,12 @@ const NavBar = () => {
                     <li
                         key={item.path}
                         className={classNames({
-                            active: location.pathname === item.path,
+                            active: item.activePaths.includes(location.pathname),
                         })}
                         onClick={() => navigate(item.path)}
                     >
                         {item.icon}
-                        <p>{item.text}</p>
+                        <p>{item.label}</p>
                     </li>
                 ))}
             </ul>

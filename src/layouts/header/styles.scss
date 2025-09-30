@@ -1,0 +1,27 @@
+#header-layout {
+    position: sticky;
+    top: 0;
+    height: 3.3rem;
+    width: 100%;
+    z-index: 100;
+    background-color: $cream-000;
+    box-shadow: 0 0.1rem 0.5rem $cream-shadow-200;
+    @include flex(flex-start, center);
+    gap: 0.5rem;
+    padding: 0 1rem;
+
+    p {
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    svg {
+        font-size: 2rem;
+        color: $text-secondary;
+        cursor: pointer;
+
+        &:hover {
+            color: $text-primary;
+        }
+    }
+}
