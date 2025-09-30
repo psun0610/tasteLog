@@ -20,6 +20,12 @@ body {
     background-color: $bg-cream;
 }
 
+button,
+a {
+    -webkit-tap-highlight-color: transparent; /* iOS/Chrome 모바일 */
+    outline: none;
+    -webkit-touch-callout: none;
+}
 a {
     color: $color-primary; // 메인 색상 사용
     text-decoration: none;

@@ -1,0 +1,47 @@
+#recommend-restaurant {
+    @include flex(flex-start, center);
+    gap: 1.3rem;
+    img {
+        width: 13rem;
+        height: 10rem;
+        object-fit: cover;
+    }
+    .recommend-restaurant-info {
+        .friend-name {
+            width: fit-content;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            border: 0.1rem solid $color-info;
+            background-color: rgba($color-info, 0.1);
+            border-radius: 5rem;
+            padding: 0.1rem 0.8rem;
+
+            span {
+                font-weight: 700;
+            }
+        }
+        .header {
+            @include flex(flex-start, center);
+            gap: 0.5rem;
+        }
+        .name {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .address {
+            font-size: 1.2rem;
+            color: $text-sub;
+        }
+        .description {
+            margin-top: 0.4rem;
+            font-size: 1.2rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.5;
+        }
+    }
+}

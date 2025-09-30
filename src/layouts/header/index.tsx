@@ -1,5 +1,14 @@
-const Header = () => {
-    return <header>test</header>;
-};
+import { FiArrowLeft } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
+import './styles.scss'
 
-export default Header;
+const Header = () => {
+    const navigate = useNavigate()
+    return (
+        <header id="header-layout">
+            <FiArrowLeft onClick={() => navigate(-1)} />
+        </header>
+    )
+}
+
+export default Header

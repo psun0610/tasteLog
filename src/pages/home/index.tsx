@@ -4,6 +4,7 @@ import SectionBox from '@/layouts/sectionBox'
 import ReviewList from '@/features/review/components/reviewList'
 import { IReview } from '@/features/review/components/reviewList/types'
 import { useNavigate } from 'react-router-dom'
+import RecommendRestaurant from '@/features/restaurant/components/recommend'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -27,6 +28,9 @@ const Home = () => {
         <div id="home">
             <SectionBox title="친구들이 다녀온 맛집" titleClick={() => navigate('/reviewFeed')}>
                 <ReviewList reviews={reviews} />
+            </SectionBox>
+            <SectionBox title="추천 맛집" titleClick={() => navigate('/recommendRestaurant')}>
+                <RecommendRestaurant />
             </SectionBox>
             <HomeFloatingButton />
         </div>

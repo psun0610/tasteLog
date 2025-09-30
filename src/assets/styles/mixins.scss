@@ -1,7 +1,7 @@
-@mixin flex($justify: center, $align: null, $direction: row) {
+@mixin flex($justify: center, $align: null or center, $direction: row) {
     display: flex;
     flex-direction: $direction;
 
     justify-content: $justify;
-    align-items: if($align == null, $justify, $align);
+    align-items: $align;
 }
