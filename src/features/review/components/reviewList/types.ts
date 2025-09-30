@@ -4,4 +4,5 @@ export interface IReview {
     restaurantName: string
     starRating: number
     reviewContent: string
+    imageSrc?: string
 }

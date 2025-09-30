@@ -17,6 +17,7 @@ const ReviewList = ({ reviews }: { reviews: IReview[] }) => {
                             <StarRating rating={review.starRating} />
                         </div>
                         <p className="review-content">{review.reviewContent}</p>
+                        {review?.imageSrc && <img src={review.imageSrc} alt="review" />}
                     </div>
                 </li>
             ))}
