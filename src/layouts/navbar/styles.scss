@@ -3,11 +3,13 @@
     box-shadow: 0 -0.2rem 1rem $cream-shadow-200;
 
     > ul {
-        @include flex(space-around, center, null, 0.2rem);
+        @include flex(space-around, center);
+        gap: 0.2rem;
         height: 6rem;
 
         > li {
-            @include flex(center, null, column, 0.5rem);
+            @include flex($justify: center, $direction: column);
+            gap: 0.5rem;
             padding-top: 0.5rem;
             transition: all 0.2s ease;
 

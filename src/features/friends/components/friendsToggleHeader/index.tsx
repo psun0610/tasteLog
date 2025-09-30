@@ -65,12 +65,19 @@ const FriendsToggleHeader = () => {
     ]
 
     return (
-        <div className={classNames('friends-toggle-header', { expanded: isExpanded, closing: isClosing })}>
-            <ul>{friendsList.map((friend) => friendsToggle(friend, setIsViewModalOpen, setSelectFriend))}</ul>
-            <button className="expand-button" onClick={handleExpand}>
-                <FiChevronDown />
-            </button>
-            <ViewToggleModal friend={selectFriend} isOpen={isViewModalOpen} onClose={() => setIsViewModalOpen(false)} />
+        <div className="friends-toggle-container">
+            <div className={classNames('friends-toggle-header', { expanded: isExpanded, closing: isClosing })}>
+                <ul>{friendsList.map((friend) => friendsToggle(friend, setIsViewModalOpen, setSelectFriend))}</ul>
+                <button className="expand-button" onClick={handleExpand}>
+                    <FiChevronDown />
+                </button>
+                <ViewToggleModal
+                    friend={selectFriend}
+                    isOpen={isViewModalOpen}
+                    onClose={() => setIsViewModalOpen(false)}
+                />
+            </div>
+            <div className="empty-area" />
         </div>
     )
 }

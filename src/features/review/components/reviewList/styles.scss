@@ -1,0 +1,43 @@
+#review-list {
+    li {
+        @include flex(flex-start);
+        gap: 1.5rem;
+        padding: 1rem;
+
+        .profile {
+            @include flex($direction: column);
+
+            img {
+                width: 4.5rem;
+                height: 4.5rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        .review {
+            .nickname {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+
+            > div {
+                @include flex(flex-start);
+                gap: 0.5rem;
+                margin-bottom: 0.4rem;
+
+                .restaurant-name {
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                }
+
+                .star-rating {
+                    font-size: 1.4rem;
+                }
+            }
+            .review-content {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}

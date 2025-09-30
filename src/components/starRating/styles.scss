@@ -1,0 +1,24 @@
+.star-rating {
+    position: relative;
+    display: inline-block;
+
+    .stars {
+        display: flex;
+        color: $gray-100;
+        gap: 0.1rem;
+
+        svg {
+            font-size: 1.7rem;
+            flex-shrink: 0;
+        }
+    }
+
+    .yellow {
+        color: $color-warning;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}

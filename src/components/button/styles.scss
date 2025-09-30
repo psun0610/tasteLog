@@ -3,9 +3,9 @@
     border: none;
     border-radius: 0.6rem;
     padding: 0.4rem 1rem;
-    box-shadow: 0 0 0.2rem $cream-shadow-500;
     transition: background-color 0.2s ease;
-    @include flex(center, null, null, 0.2rem);
+    @include flex($justify: center);
+    gap: 0.2rem;
 
     &.primary {
         background-color: $color-primary;
