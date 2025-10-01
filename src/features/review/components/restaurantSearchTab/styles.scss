@@ -1,0 +1,12 @@
+#restaurant-search-tab {
+    width: 100%;
+    margin-top: 2rem;
+    @include flex(center, center, column);
+    gap: 2rem;
+
+    .description {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: $text-secondary;
+    }
+}

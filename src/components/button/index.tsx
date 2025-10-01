@@ -14,9 +14,8 @@ interface ButtonProps {
 const Button = ({ color = 'primary', border = false, className, text, children, onClick, ...props }: ButtonProps) => {
     return (
         <button
-            className={classNames('button', color, {
+            className={classNames(`button ${className}`, color, {
                 border: border,
-                className: className,
             })}
             onClick={onClick}
             {...props}

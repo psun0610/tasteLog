@@ -9,6 +9,7 @@
         padding: 1rem;
         background-color: $cream-000;
         box-shadow: 0 0.2rem 1rem $cream-shadow-200;
+        z-index: 100;
 
         // 오른쪽에 흐리게 하는 효과
         &::after {
