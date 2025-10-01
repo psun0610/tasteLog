@@ -59,7 +59,7 @@ const TrendList = () => {
             <ul>
                 {trendList.map((trend) => (
                     <li key={trend.id} className={trend.type} onClick={() => {}}>
-                        {trend.name}
+                        # {trend.name}
                     </li>
                 ))}
             </ul>

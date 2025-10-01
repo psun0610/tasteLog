@@ -7,6 +7,7 @@ import Loading from '@/pages/loading'
 const Pages = {
     Home: lazy(() => import('@/pages/home')),
     ReviewFeed: lazy(() => import('@/pages/reviewFeed')),
+    CreateReview: lazy(() => import('@/pages/createReview')),
     Map: lazy(() => import('@/pages/map')),
     Discover: lazy(() => import('@/pages/discover')),
     Noti: lazy(() => import('@/pages/noti')),
@@ -27,6 +28,7 @@ const Router = () => {
                     <Route path="/discover" element={<Pages.Discover />} />
                     <Route path="/noti" element={<Pages.Noti />} />
                     <Route path="/myPage" element={<Pages.MyPage />} />
+                    <Route path="createReview" element={<Pages.CreateReview />} />
                 </Route>
                 <Route path="*" element={<Pages.NotFound />} />
             </Routes>
