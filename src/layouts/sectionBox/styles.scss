@@ -1,4 +1,6 @@
 #section-box {
+    width: 100%;
+
     header {
         @include flex($justify: flex-start, $align: center);
         gap: 0.4rem;

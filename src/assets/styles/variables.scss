@@ -41,7 +41,7 @@ $cream-shadow-900: mix($gray-900, $cream-900, 50%); // 가장 진한 그림자
 // --------------------
 // Optional feedback colors
 // --------------------
-$color-success: #6bcb77; // 성공
+$color-success: #82d6a8; // 성공
 $color-warning: #ffd166; // 경고
 $color-error: #ff6b6b; // 오류
 $color-info: #6ba9ff; // 정보
@@ -65,3 +65,9 @@ $text-info: $color-info;
 $text-success: $color-success;
 $text-warning: $color-warning;
 $text-error: $color-error;
+
+// --------------------
+// Header Height
+// --------------------
+$header-height: 4.5rem;
+$navbar-height: 6rem;

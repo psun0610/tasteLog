@@ -3,7 +3,7 @@ import './styles.scss'
 import classNames from 'classnames'
 
 interface SectionBoxProps {
-    title: string
+    title: React.ReactNode
     children: React.ReactNode
     titleClick?: () => void
     contentBox?: boolean // 컨텐츠 박스 스타일 적용 여부
