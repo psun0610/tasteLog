@@ -1,9 +1,23 @@
 #home {
-    margin: 2rem;
     @include flex(flex-start, flex-start, column);
-    gap: 3rem;
+    gap: 2rem;
 
-    & > section {
+    .home-header {
+        padding: 2rem 2rem 0 2rem;
+
+        h1 {
+            font-size: 1.7rem;
+            color: $color-primary;
+        }
+    }
+
+    .home-content {
+        @include flex(flex-start, flex-start, column);
+        gap: 3rem;
+        padding: 0 2rem 2rem 2rem;
+    }
+
+    & section {
         width: 100%;
     }
 }
