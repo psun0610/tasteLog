@@ -1,5 +1,5 @@
-#mainLayout {
-    height: 100%;
+#main-layout {
+    height: calc(100vh - $navbar-height);
 
     > header {
         position: sticky;
@@ -9,8 +9,12 @@
         z-index: 100;
     }
 
+    > main {
+        height: 100%;
+    }
+
     > nav {
-        position: sticky;
+        position: fixed;
         bottom: 0;
         width: 100%;
         z-index: 1000;
