@@ -46,7 +46,7 @@ const ReviewTab = () => {
                 <textarea placeholder="생생한 리뷰가 듣고싶어요!" />
             </div>
             {/* <div className="review-tag-box"></div> */}
-            <Button text="작성 완료" onClick={() => {}} color="primary" className="review-submit-button" />
+            <Button text="작성 완료" onClick={() => {}} color="primary" className="large" />
         </div>
     )
 }

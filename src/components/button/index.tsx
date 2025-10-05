@@ -21,7 +21,7 @@ const Button = ({ color = 'primary', border = false, className, text, children, 
             {...props}
         >
             {children && children}
-            {text}
+            <p>{text}</p>
         </button>
     )
 }
