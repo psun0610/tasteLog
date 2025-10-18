@@ -87,4 +87,11 @@
             color: $cream-100;
         }
     }
+
+    &:disabled,
+    &.disabled {
+        background-color: $gray-200;
+        color: $text-white;
+        cursor: not-allowed;
+    }
 }

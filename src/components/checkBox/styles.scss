@@ -1,0 +1,63 @@
+#check-box {
+    display: flex;
+    position: relative;
+
+    > input {
+        position: absolute;
+        width: 0.1rem;
+        height: 0.1rem;
+        padding: 0;
+        border: 0;
+        overflow: hidden;
+        margin: -1px;
+        clip-path: inset(50%);
+
+        &:checked {
+            & + .label-box {
+                > span {
+                    background-color: $color-primary;
+                    border-color: $color-primary;
+
+                    &::before {
+                        border-color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    .label-box {
+        position: relative;
+
+        > span {
+            width: 1.4em;
+            height: 1.4em;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 1px solid $gray-200;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+
+            &::before {
+                content: '';
+                position: absolute;
+                box-sizing: border-box;
+                width: 30%;
+                height: 55%;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-60%) translateY(-60%) rotateZ(40deg);
+                border-right: 0.2rem solid $gray-200;
+                border-bottom: 0.2rem solid $gray-200;
+            }
+        }
+
+        > label {
+            padding-left: 2em;
+            position: relative;
+            cursor: pointer;
+        }
+    }
+}
