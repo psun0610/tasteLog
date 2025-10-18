@@ -54,6 +54,9 @@ $color-secondary: #95d5b2; // 톤 다운 민트
 $color-accent: #ff6b6b; // 포인트, 튀지 않음
 $bg-cream: $cream-100; // 부드러운 크림
 
+$color-primary-200: #ff9249;
+$color-primary-300: #e07b4c;
+$color-primary-400: #cc6600;
 // --------------------
 // Text Colors
 // --------------------
@@ -65,6 +68,7 @@ $text-info: $color-info;
 $text-success: $color-success;
 $text-warning: $color-warning;
 $text-error: $color-error;
+$text-accent: $color-primary-300;
 
 // --------------------
 // Header Height
