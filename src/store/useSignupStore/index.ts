@@ -1,4 +1,4 @@
-import { defaultInput } from '@/features/signup/components/signUpInputs/const'
+import { defaultInput } from '@/features/user/components/signUpInputs/const'
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 import { ISignupStore } from './types'
@@ -10,6 +10,12 @@ const useSignupStore = create<ISignupStore>()(
             setInput: (key: string, value: string | boolean) => {
                 set((state) => {
                     state.input[key] = value as never
+                })
+            },
+            setProfileImg: (e: React.ChangeEvent<HTMLInputElement>) => {
+                e.preventDefault()
+                set((state) => {
+                    state.input.profileImg = e.target.files[0]
                 })
             },
         },

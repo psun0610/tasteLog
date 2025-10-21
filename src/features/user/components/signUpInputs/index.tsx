@@ -1,5 +1,5 @@
 import Button from '@/components/button'
-import '@/features/signup/styles/signup.scss'
+import '@/features/user/styles/signup.scss'
 import './styles.scss'
 import CheckBox from '@/components/checkBox'
 import { FiEye, FiEyeOff } from 'react-icons/fi'

@@ -1,9 +1,9 @@
 import { validate, VALIDATE_TYPE } from '@/utils/validate'
 import { useState, useMemo } from 'react'
 import { defaultPasswordHidden } from '../components/signUpInputs/const'
-import { IPasswordHidden } from '../types/signUpInputs'
-import useSignupStore from '@/store/useSignupStore'
 import { useShallow } from 'zustand/react/shallow'
+import { IPasswordHidden } from '../types/signUp'
+import useSignupStore from '@/store/useSignupStore'
 
 /** 회원가입에 필요한 핸들러 및 유효성 검사 훅 */
 const useSignupInputs = () => {

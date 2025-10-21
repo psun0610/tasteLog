@@ -19,7 +19,7 @@
         .signup-content {
             @include flex(center, flex-start, column);
             width: 100%;
-            gap: 3.5rem;
+            gap: 1.5rem;
         }
     }
 }

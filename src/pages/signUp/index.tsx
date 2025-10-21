@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './styles.scss'
 import Header from '@/layouts/header'
 import { useNavigate } from 'react-router-dom'
-import { SignUpInputs, SignUpProfile } from '@/features/signup'
+import { SignUpInputs, SignUpProfile } from '@/features/user'
 
 const SignUp = () => {
     const navigate = useNavigate()

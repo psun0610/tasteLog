@@ -1,4 +1,4 @@
-import { IPasswordHidden, ISignUpInput } from '../../types/signUpInputs'
+import { IPasswordHidden, ISignUpInput } from '../../types/signUp'
 
 export const defaultInput: ISignUpInput = {
     email: '',
@@ -7,7 +7,7 @@ export const defaultInput: ISignUpInput = {
     privacyPolicyAgree: false,
     marketingAgree: false,
     nickname: '',
-    profileImg: '',
+    profileImg: null,
 }
 
 export const defaultPasswordHidden: IPasswordHidden = {
