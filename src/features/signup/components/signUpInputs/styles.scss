@@ -1,0 +1,52 @@
+.signup {
+    &#signup-inputs {
+        .signup-content {
+            > button {
+                margin-top: 2rem;
+            }
+
+            > p {
+                padding-left: 0.5rem;
+                font-size: 1.3rem;
+                color: $text-error;
+            }
+
+            > .password-input {
+                @include flex(center, center, row);
+                gap: 1rem;
+                width: 100%;
+                position: relative;
+
+                > button {
+                    position: absolute;
+                    right: 1.5rem;
+                    bottom: calc(2.2rem);
+                    transform: translateY(50%);
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    cursor: pointer;
+                    color: $gray-200;
+                    border: none;
+                    background-color: transparent;
+
+                    > svg {
+                        width: 1.8rem;
+                        height: 1.8rem;
+                    }
+                }
+            }
+        }
+
+        .signup-checkbox-container {
+            position: relative;
+            width: 100%;
+            @include flex(center, flex-start, column);
+            gap: 1.2rem;
+
+            .signup-checkbox-item {
+                @include flex(center, center, row);
+                gap: 0.5rem;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 // src/Router.tsx
 import { lazy, Suspense } from 'react'
-import { Routes, Route, Outlet } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Layout from '@/layouts'
 import Loading from '@/pages/loading'
 
@@ -14,7 +14,7 @@ const Pages = {
     MyPage: lazy(() => import('@/pages/myPage')),
     NotFound: lazy(() => import('@/pages/notFound')),
     Login: lazy(() => import('@/pages/login')),
-    Signup: lazy(() => import('@/pages/signup')),
+    SignUp: lazy(() => import('@/pages/signUp')),
 }
 
 const Router = () => {
@@ -38,7 +38,7 @@ const Router = () => {
                     <Route path="/createReview" element={<Pages.CreateReview />} />
                 </Route>
                 <Route path="/login" element={<Pages.Login />} />
-                <Route path="/signup" element={<Pages.Signup />} />
+                <Route path="/signup" element={<Pages.SignUp />} />
                 <Route path="*" element={<Pages.NotFound />} />
             </Routes>
         </Suspense>

@@ -1,11 +1,13 @@
 import Button from '@/components/button'
 import { Link } from 'react-router-dom'
+import logo from '@/assets/images/logo-with-name.png'
 import './styles.scss'
 
 const Login = () => {
     return (
         <div id="login-page">
             <div className="login-header">
+                <img src={logo} alt="logo" />
                 <p>같이 맛집 털 친구 찾는 중...</p>
             </div>
             <div className="login-form">
@@ -15,7 +17,6 @@ const Login = () => {
                     <Button text="로그인하기" onClick={() => {}} color="primary" className="large" />
                 </div>
 
-                <p className="login-divider">또는</p>
                 <div className="social-login-container">
                     <Button text="카카오로 시작하기" onClick={() => {}} color="primary" className="large kakao">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
@@ -39,10 +40,18 @@ const Login = () => {
             </div>
 
             <div className="login-footer">
-                <p>아직 회원이 아니신가요?</p>
-                <p>
-                    <Link to="/signup">회원가입하기</Link>
-                </p>
+                <div>
+                    <p>비밀번호를 잊으셨나요?</p>
+                    <p>
+                        <Link to="/findPassword">비밀번호 찾기</Link>
+                    </p>
+                </div>
+                <div>
+                    <p>아직 회원이 아니신가요?</p>
+                    <p>
+                        <Link to="/signup">회원가입하기</Link>
+                    </p>
+                </div>
             </div>
         </div>
     )

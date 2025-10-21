@@ -1,0 +1,24 @@
+.signup {
+    .signup-container {
+        @include flex(center, center, column);
+        gap: 4rem;
+        width: 100%;
+        height: calc(100vh - $header-height);
+        padding: 2rem;
+
+        .signup-header {
+            > p {
+                font-size: 2.2rem;
+                font-weight: 600;
+                color: $cream-800;
+                text-align: center;
+            }
+        }
+
+        .signup-content {
+            @include flex(center, flex-start, column);
+            width: 100%;
+            gap: 1.4rem;
+        }
+    }
+}

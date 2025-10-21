@@ -1,0 +1,11 @@
+.signup {
+    & #signup-profile {
+        .signup-profile-container {
+            @include flex(center, center, column);
+            gap: 4rem;
+            width: 100%;
+            height: calc(100vh - $header-height);
+            padding: 2rem;
+        }
+    }
+}

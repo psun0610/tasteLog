@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './styles.scss'
 import StarRating from '@/components/starRating'
 import Button from '@/components/button'
