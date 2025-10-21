@@ -1,6 +1,6 @@
 import Input from '@/components/input'
 import './styles.scss'
-import '@/features/user/styles/signup.scss'
+import '@/features/user/styles/signUp.scss'
 import useSignupStore from '@/store/useSignupStore'
 import { useShallow } from 'zustand/react/shallow'
 import Button from '@/components/button'
