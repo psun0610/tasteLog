@@ -1,4 +1,4 @@
-import { defaultInput } from '@/features/user/components/signUpInputs/const'
+import { defaultInput } from '@/features/user/components/signUpForm/const'
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 import { ISignupStore } from './types'

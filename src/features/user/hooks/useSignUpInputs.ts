@@ -1,6 +1,6 @@
 import { validate, VALIDATE_TYPE } from '@/utils/validate'
 import { useState, useMemo } from 'react'
-import { defaultPasswordHidden } from '../components/signUpInputs/const'
+import { defaultPasswordHidden } from '../components/signUpForm/const'
 import { useShallow } from 'zustand/react/shallow'
 import { IPasswordHidden } from '../types/signUp'
 import useSignupStore from '@/store/useSignupStore'

@@ -1,17 +1,40 @@
 import Button from '@/components/button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '@/assets/images/logo-with-name.png'
 import { useState } from 'react'
 import { ILoginParams } from '../../types/login'
+import '@/features/user/styles/userCommon.scss'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
+import useUserApi from '../../hooks/useUserApi'
 
 const LoginForm = () => {
+    const navigate = useNavigate()
+
     const [input, setInput] = useState<ILoginParams>({
         email: '',
         password: '',
     })
+    const [hidden, setHidden] = useState(false)
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput({ ...input, [e.target.name]: e.target.value })
+    }
+
+    const { mutate: signIn } = useUserApi.signIn({
+        onSuccess: (res) => {
+            console.log(res)
+            navigate('/', { replace: true })
+        },
+        onError: (err) => {
+            console.log(err)
+        },
+    })
+
+    const onLogin = () => {
+        signIn({
+            email: input.email,
+            password: input.password,
+        })
     }
 
     return (
@@ -22,9 +45,24 @@ const LoginForm = () => {
             </div>
             <div className="login-form">
                 <div className="login-content">
-                    <input placeholder="이메일" type="email" value={input.email} onChange={handleInputChange} />
-                    <input placeholder="비밀번호" type="password" value={input.password} onChange={handleInputChange} />
-                    <Button text="로그인하기" onClick={() => {}} color="primary" className="large" />
+                    <input
+                        placeholder="이메일"
+                        type="email"
+                        name="email"
+                        value={input.email}
+                        onChange={handleInputChange}
+                    />
+                    <div className="password-input">
+                        <input
+                            placeholder="비밀번호"
+                            type={hidden ? 'password' : 'text'}
+                            name="password"
+                            value={input.password}
+                            onChange={handleInputChange}
+                        />
+                        <button onClick={() => setHidden((prev) => !prev)}>{hidden ? <FiEye /> : <FiEyeOff />}</button>
+                    </div>
+                    <Button text="로그인하기" onClick={onLogin} color="primary" className="large" />
                 </div>
 
                 <div className="social-login-container">

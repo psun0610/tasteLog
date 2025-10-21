@@ -5,18 +5,21 @@ import useSignupStore from '@/store/useSignupStore'
 import { useShallow } from 'zustand/react/shallow'
 import Button from '@/components/button'
 import FileBox from '@/components/fileBox'
-import { useSignUpApi } from '@/features/user/hooks/useSignUpApi'
 import { useNavigate } from 'react-router-dom'
+import useUserApi from '../../hooks/useUserApi'
 
 const SignupProfile = () => {
     const navigate = useNavigate()
     const [input, setInput, setProfileImg] = useSignupStore(
         useShallow((state) => [state.input, state.action.setInput, state.action.setProfileImg])
     )
-    const { mutate: signUp } = useSignUpApi({
+    const { mutate: signUp } = useUserApi.signUp({
         onSuccess: (res) => {
             console.log(res)
             navigate('/', { replace: true })
+        },
+        onError: (err) => {
+            console.log(err)
         },
     })
 

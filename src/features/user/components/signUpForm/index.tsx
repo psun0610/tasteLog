@@ -1,5 +1,6 @@
 import Button from '@/components/button'
 import '@/features/user/styles/signup.scss'
+import '@/features/user/styles/userCommon.scss'
 import './styles.scss'
 import CheckBox from '@/components/checkBox'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
@@ -19,7 +20,7 @@ const SignupInputs = ({ handleNext }: { handleNext: () => void }) => {
     } = useSignupInputs()
 
     return (
-        <div id="signup-inputs" className="signup">
+        <div id="signup-form" className="signup">
             <div className="signup-container">
                 <div className="signup-header">
                     <p>반가워요!</p>
