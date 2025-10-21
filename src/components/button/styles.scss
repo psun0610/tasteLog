@@ -22,7 +22,7 @@
 
         &.border {
             border: 2px solid $color-primary;
-            color: mix(black, $color-primary, 50%);
+            color: $color-shadow-primary;
             &:hover {
                 background-color: $color-primary;
             }
@@ -35,7 +35,7 @@
 
         &.border {
             border: 2px solid $color-success;
-            color: mix(black, $color-success, 50%);
+            color: $color-shadow-success;
             &:hover {
                 background-color: $color-success;
             }
@@ -48,7 +48,7 @@
 
         &.border {
             border: 2px solid $color-info;
-            color: mix(black, $color-info, 50%);
+            color: $color-shadow-info;
             &:hover {
                 background-color: $color-info;
             }
@@ -60,7 +60,7 @@
 
         &.border {
             border: 2px solid $color-accent;
-            color: mix(black, $color-accent, 50%);
+            color: $color-shadow-accent;
             &:hover {
                 background-color: $color-accent;
             }
@@ -72,7 +72,7 @@
 
         &.border {
             border: 2px solid $gray-200;
-            color: mix(black, $gray-200, 50%);
+            color: $color-shadow-gray;
             &:hover {
                 background-color: $gray-200;
             }
