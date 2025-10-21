@@ -1,5 +1,5 @@
 import Button from '@/components/button'
-import '@/features/user/styles/signup.scss'
+import '@/features/user/styles/signUp.scss'
 import '@/features/user/styles/userCommon.scss'
 import './styles.scss'
 import CheckBox from '@/components/checkBox'
