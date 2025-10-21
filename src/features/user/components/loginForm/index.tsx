@@ -6,10 +6,11 @@ import { ILoginParams } from '../../types/login'
 import '@/features/user/styles/userCommon.scss'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import useUserApi from '../../hooks/useUserApi'
+import useAlertStore from '@/store/useAlertStore'
 
 const LoginForm = () => {
     const navigate = useNavigate()
-
+    const setAlert = useAlertStore((state) => state.action.setAlert)
     const [input, setInput] = useState<ILoginParams>({
         email: '',
         password: '',
@@ -27,6 +28,7 @@ const LoginForm = () => {
         },
         onError: (err) => {
             console.log(err)
+            setAlert({ isOpen: true, message: '이메일 또는 비밀번호를 확인해주세요' })
         },
     })
 
