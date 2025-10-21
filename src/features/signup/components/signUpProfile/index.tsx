@@ -20,19 +20,14 @@ const SignupProfile = () => {
                     </p>
                 </div>
                 <div className="signup-content">
+                    <FileBox onChange={(e) => setInput('profileImg', e.target.value)} type="circle" />
                     <Input
-                        label="닉네임"
                         placeholder="닉네임"
                         type="text"
                         id="nickname"
                         value={input.nickname}
                         onChange={(e) => setInput('nickname', e.target.value)}
                         required
-                    />
-                    <FileBox
-                        label="프로필 이미지"
-                        text="이미지 추가하기"
-                        onChange={(e) => setInput('profileImg', e.target.value)}
                     />
                 </div>
                 <Button text="회원가입" onClick={() => {}} color="primary" className="large" />

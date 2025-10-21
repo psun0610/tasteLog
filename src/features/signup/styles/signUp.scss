@@ -5,6 +5,7 @@
         width: 100%;
         height: calc(100vh - $header-height);
         padding: 2rem;
+        padding-bottom: 10rem;
 
         .signup-header {
             > p {
@@ -18,7 +19,7 @@
         .signup-content {
             @include flex(center, flex-start, column);
             width: 100%;
-            gap: 1.4rem;
+            gap: 3.5rem;
         }
     }
 }

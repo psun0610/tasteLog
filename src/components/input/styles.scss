@@ -1,5 +1,5 @@
 .input-container {
-    @include flex(center, flex-start, column);
+    @include flex(center, center, column);
     width: 100%;
     gap: 0.5rem;
 
@@ -9,6 +9,7 @@
         font-weight: 500;
         color: $text-secondary;
         position: relative;
+        align-self: flex-start;
 
         &.required {
             &::after {
