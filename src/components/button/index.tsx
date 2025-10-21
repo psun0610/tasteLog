@@ -1,13 +1,12 @@
 import classNames from 'classnames'
 import './styles.scss'
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     text?: string
     children?: React.ReactNode
     color?: 'primary' | 'green' | 'red' | 'gray' | 'blue'
     border?: boolean
     className?: string
-    props?: React.ButtonHTMLAttributes<HTMLButtonElement>
     onClick?: () => void
 }
 
@@ -21,7 +20,7 @@ const Button = ({ color = 'primary', border = false, className, text, children, 
             {...props}
         >
             {children && children}
-            {text}
+            <p>{text}</p>
         </button>
     )
 }

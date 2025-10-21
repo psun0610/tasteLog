@@ -7,13 +7,22 @@
     @include flex($justify: center);
     gap: 0.2rem;
 
+    &.large {
+        font-size: 1.4rem;
+        font-weight: 500;
+        width: 100%;
+        height: 4.5rem;
+        border-radius: 0.9rem;
+        padding: 0.4rem 2rem;
+    }
+
     &.primary {
         background-color: $color-primary;
         color: $text-white;
 
         &.border {
             border: 2px solid $color-primary;
-            color: mix(black, $color-primary, 50%);
+            color: $color-shadow-primary;
             &:hover {
                 background-color: $color-primary;
             }
@@ -26,7 +35,7 @@
 
         &.border {
             border: 2px solid $color-success;
-            color: mix(black, $color-success, 50%);
+            color: $color-shadow-success;
             &:hover {
                 background-color: $color-success;
             }
@@ -39,7 +48,7 @@
 
         &.border {
             border: 2px solid $color-info;
-            color: mix(black, $color-info, 50%);
+            color: $color-shadow-info;
             &:hover {
                 background-color: $color-info;
             }
@@ -51,7 +60,7 @@
 
         &.border {
             border: 2px solid $color-accent;
-            color: mix(black, $color-accent, 50%);
+            color: $color-shadow-accent;
             &:hover {
                 background-color: $color-accent;
             }
@@ -63,7 +72,7 @@
 
         &.border {
             border: 2px solid $gray-200;
-            color: mix(black, $gray-200, 50%);
+            color: $color-shadow-gray;
             &:hover {
                 background-color: $gray-200;
             }
@@ -77,5 +86,12 @@
             background-color: transparent;
             color: $cream-100;
         }
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: $gray-200;
+        color: $text-white;
+        cursor: not-allowed;
     }
 }

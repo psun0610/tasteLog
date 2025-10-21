@@ -1,0 +1,26 @@
+.input-container {
+    @include flex(center, center, column);
+    width: 100%;
+    gap: 0.5rem;
+
+    > label {
+        padding-left: 0.5rem;
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: $text-secondary;
+        position: relative;
+        align-self: flex-start;
+
+        &.required {
+            &::after {
+                content: '*';
+                color: $color-error;
+                font-size: 1.6rem;
+                font-weight: 500;
+                position: absolute;
+                top: 0.1rem;
+                right: -1rem;
+            }
+        }
+    }
+}
