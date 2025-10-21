@@ -1,7 +1,7 @@
 // src/Router.tsx
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Layout from '@/layouts'
+import Layout, { MainLayout } from '@/layouts'
 import Loading from '@/pages/loading'
 
 const Pages = {
@@ -21,25 +21,27 @@ const Router = () => {
     return (
         <Suspense fallback={<Loading />}>
             <Routes>
-                <Route element={<Layout />}>
-                    {/* 메인 페이지 */}
-                    <Route path="/" element={<Pages.Home />} />
-                    {/* 리뷰 피드 */}
-                    <Route path="/reviewFeed" element={<Pages.ReviewFeed />} />
-                    {/* 지도 */}
-                    <Route path="/map" element={<Pages.Map />} />
-                    {/* 탐색 */}
-                    <Route path="/discover" element={<Pages.Discover />} />
-                    {/* 알림 */}
-                    <Route path="/noti" element={<Pages.Noti />} />
-                    {/* 마이 페이지 */}
-                    <Route path="/myPage" element={<Pages.MyPage />} />
-                    {/* 리뷰 작성 */}
-                    <Route path="/createReview" element={<Pages.CreateReview />} />
+                <Route element={<MainLayout />}>
+                    <Route element={<Layout />}>
+                        {/* 메인 페이지 */}
+                        <Route path="/" element={<Pages.Home />} />
+                        {/* 리뷰 피드 */}
+                        <Route path="/reviewFeed" element={<Pages.ReviewFeed />} />
+                        {/* 지도 */}
+                        <Route path="/map" element={<Pages.Map />} />
+                        {/* 탐색 */}
+                        <Route path="/discover" element={<Pages.Discover />} />
+                        {/* 알림 */}
+                        <Route path="/noti" element={<Pages.Noti />} />
+                        {/* 마이 페이지 */}
+                        <Route path="/myPage" element={<Pages.MyPage />} />
+                        {/* 리뷰 작성 */}
+                        <Route path="/createReview" element={<Pages.CreateReview />} />
+                    </Route>
+                    <Route path="/login" element={<Pages.Login />} />
+                    <Route path="/signup" element={<Pages.SignUp />} />
+                    <Route path="*" element={<Pages.NotFound />} />
                 </Route>
-                <Route path="/login" element={<Pages.Login />} />
-                <Route path="/signup" element={<Pages.SignUp />} />
-                <Route path="*" element={<Pages.NotFound />} />
             </Routes>
         </Suspense>
     )
