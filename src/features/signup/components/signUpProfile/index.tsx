@@ -29,7 +29,11 @@ const SignupProfile = () => {
                         onChange={(e) => setInput('nickname', e.target.value)}
                         required
                     />
-                    <FileBox onChange={(e) => setInput('profileImg', e.target.value)} />
+                    <FileBox
+                        label="프로필 이미지"
+                        text="이미지 추가하기"
+                        onChange={(e) => setInput('profileImg', e.target.value)}
+                    />
                 </div>
                 <Button text="회원가입" onClick={() => {}} color="primary" className="large" />
             </div>
