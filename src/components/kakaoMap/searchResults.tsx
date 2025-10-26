@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { Place } from './types'
-import './SearchResults.scss'
+import './searchResults.scss'
 
 interface SearchResultsProps {
     places: Place[]
