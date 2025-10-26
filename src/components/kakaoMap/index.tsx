@@ -106,7 +106,7 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
             document.addEventListener('mousemove', handleMove)
             document.addEventListener('mouseup', handleEnd)
 
-            // 터치 이벤트
+            // 터치 이벤트 - passive: false로 설정하여 preventDefault 사용 가능
             document.addEventListener('touchmove', handleMove, { passive: false })
             document.addEventListener('touchend', handleEnd)
         },

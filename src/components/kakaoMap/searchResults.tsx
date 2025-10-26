@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react'
 import { Place } from './types'
 import './SearchResults.scss'
 
@@ -16,11 +17,29 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     onPlaceSelect,
     onDragStart,
 }) => {
+    const dragHandleRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const dragHandle = dragHandleRef.current
+        if (!dragHandle) return
+
+        const handleTouchStart = (e: TouchEvent) => {
+            onDragStart(e as any)
+        }
+
+        // 터치 이벤트를 passive: false로 수동 등록
+        dragHandle.addEventListener('touchstart', handleTouchStart, { passive: false })
+
+        return () => {
+            dragHandle.removeEventListener('touchstart', handleTouchStart)
+        }
+    }, [onDragStart])
+
     if (places.length === 0) return null
 
     return (
         <div className={`search-results ${resultsState}`}>
-            <div className="drag-handle" onMouseDown={onDragStart} onTouchStart={onDragStart}>
+            <div className="drag-handle" ref={dragHandleRef} onMouseDown={onDragStart}>
                 <div className="drag-indicator"></div>
             </div>
             <div className="search-results-header">
