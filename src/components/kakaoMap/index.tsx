@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { Place } from './types'
+import SearchResults from './searchResults'
+import './styles.scss'
 
 interface KakaoMapProps {
     keyword?: string // 검색 키워드
@@ -9,7 +11,7 @@ interface KakaoMapProps {
     center?: { lat: number; lng: number } // 지도 중심
     level?: number // 지도 확대 레벨
     selectedPlaceId?: string | null // 선택된 장소 ID (부모에서 제어)
-    resultsState?: 'collapsed' | 'partial' | 'expanded' // 검색결과 상태
+    showSearchResults?: boolean // 검색 결과 표시 여부
 }
 
 const KakaoMap: React.FC<KakaoMapProps> = ({
@@ -20,7 +22,7 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
     center = { lat: 37.5665, lng: 126.978 },
     level = 3,
     selectedPlaceId = null,
-    resultsState = 'collapsed',
+    showSearchResults = true,
 }) => {
     const mapContainer = useRef<HTMLDivElement>(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,6 +30,8 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const markersRef = useRef<any[]>([]) // 마커는 useRef로 관리
     const markersDataRef = useRef<Place[]>([]) // 마커 데이터를 저장
+    const [places, setPlaces] = useState<Place[]>([]) // 검색 결과 상태
+    const [resultsState, setResultsState] = useState<'collapsed' | 'partial' | 'expanded'>('partial') // 검색결과 상태
 
     // 콜백 함수들을 useRef로 관리하여 불필요한 리렌더링 방지
     const onMarkerClickRef = useRef(onMarkerClick)
@@ -41,6 +45,73 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
     useEffect(() => {
         onPlacesChangeRef.current = onPlacesChange
     }, [onPlacesChange])
+
+    // 검색 결과 상태 업데이트
+    const handlePlacesChange = useCallback((newPlaces: Place[]) => {
+        setPlaces(newPlaces)
+        onPlacesChangeRef.current?.(newPlaces)
+    }, [])
+
+    // 장소 선택 핸들러
+    const handlePlaceSelect = useCallback((place: Place) => {
+        onMarkerClickRef.current?.(place)
+    }, [])
+
+    // 드래그 핸들러
+    const handleDragStart = useCallback(
+        (e: React.MouseEvent | React.TouchEvent) => {
+            e.preventDefault()
+            const startY = 'touches' in e ? e.touches[0].clientY : e.clientY
+            const startState = resultsState
+            let isDragging = false
+
+            const handleMove = (moveEvent: MouseEvent | TouchEvent) => {
+                const currentY = 'touches' in moveEvent ? moveEvent.touches[0].clientY : moveEvent.clientY
+                const deltaY = currentY - startY
+                const threshold = 30
+
+                // 드래그가 시작되었는지 확인
+                if (Math.abs(deltaY) > 5) {
+                    isDragging = true
+                }
+
+                if (isDragging) {
+                    if (deltaY > threshold) {
+                        // 아래로 드래그 - 접기
+                        if (startState === 'expanded') {
+                            setResultsState('partial')
+                        } else if (startState === 'partial') {
+                            setResultsState('collapsed')
+                        }
+                    } else if (deltaY < -threshold) {
+                        // 위로 드래그 - 펼치기
+                        if (startState === 'collapsed') {
+                            setResultsState('partial')
+                        } else if (startState === 'partial') {
+                            setResultsState('expanded')
+                        }
+                    }
+                }
+            }
+
+            const handleEnd = () => {
+                isDragging = false
+                document.removeEventListener('mousemove', handleMove)
+                document.removeEventListener('mouseup', handleEnd)
+                document.removeEventListener('touchmove', handleMove)
+                document.removeEventListener('touchend', handleEnd)
+            }
+
+            // 마우스 이벤트
+            document.addEventListener('mousemove', handleMove)
+            document.addEventListener('mouseup', handleEnd)
+
+            // 터치 이벤트
+            document.addEventListener('touchmove', handleMove, { passive: false })
+            document.addEventListener('touchend', handleEnd)
+        },
+        [resultsState]
+    )
 
     // 주황색 마커 이미지 생성 함수
     const createOrangeMarkerImage = () => {
@@ -153,13 +224,13 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
                 })
 
                 map.setBounds(bounds)
-                onPlacesChangeRef.current?.(data)
+                handlePlacesChange(data)
             } else {
-                onPlacesChangeRef.current?.([])
+                handlePlacesChange([])
                 markersDataRef.current = []
             }
         })
-    }, [keyword, map])
+    }, [keyword, map, handlePlacesChange])
 
     // 부모가 직접 마커 전달 시
     useEffect(() => {
@@ -192,8 +263,11 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
             bounds.extend(new kakao.maps.LatLng(place.y, place.x))
         })
 
-        if (markersData.length) map.setBounds(bounds)
-    }, [markersData, map])
+        if (markersData.length) {
+            map.setBounds(bounds)
+            handlePlacesChange(markersData)
+        }
+    }, [markersData, map, handlePlacesChange])
 
     // 선택된 마커 업데이트 (지도 리렌더링 없이)
     useEffect(() => {
@@ -216,9 +290,22 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
                 moveToSelectedPlace(selectedMarker.place)
             }
         }
-    }, [selectedPlaceId, map])
+    }, [selectedPlaceId, map, resultsState])
 
-    return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
+    return (
+        <div className="kakao-map-wrapper" style={{ width: '100%', height: '100%', position: 'relative' }}>
+            <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
+            {showSearchResults && (
+                <SearchResults
+                    places={places}
+                    selectedPlaceId={selectedPlaceId}
+                    resultsState={resultsState}
+                    onPlaceSelect={handlePlaceSelect}
+                    onDragStart={handleDragStart}
+                />
+            )}
+        </div>
+    )
 }
 
 export default KakaoMap
