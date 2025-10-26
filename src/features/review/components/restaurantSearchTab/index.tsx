@@ -9,7 +9,7 @@ const RestaurantSearchTab = ({ onTabChange }: { onTabChange: () => void }) => {
     const [keyword, setKeyword] = useState('')
     const [places, setPlaces] = useState<Place[]>([])
     const [selectedPlace, setSelectedPlace] = useState<Place | null>(null)
-    const [isResultsExpanded, setIsResultsExpanded] = useState(true)
+    const [resultsState, setResultsState] = useState<'collapsed' | 'partial' | 'expanded'>('partial')
 
     const handlePlacesChange = useCallback((newPlaces: Place[]) => {
         setPlaces(newPlaces)
@@ -27,13 +27,13 @@ const RestaurantSearchTab = ({ onTabChange }: { onTabChange: () => void }) => {
     const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
         e.preventDefault()
         const startY = 'touches' in e ? e.touches[0].clientY : e.clientY
-        const startExpanded = isResultsExpanded
+        const startState = resultsState
         let isDragging = false
 
         const handleMove = (moveEvent: MouseEvent | TouchEvent) => {
             const currentY = 'touches' in moveEvent ? moveEvent.touches[0].clientY : moveEvent.clientY
             const deltaY = currentY - startY
-            const threshold = 30 // 드래그 임계값을 줄여서 더 반응적으로
+            const threshold = 30
 
             // 드래그가 시작되었는지 확인
             if (Math.abs(deltaY) > 5) {
@@ -41,10 +41,20 @@ const RestaurantSearchTab = ({ onTabChange }: { onTabChange: () => void }) => {
             }
 
             if (isDragging) {
-                if (deltaY > threshold && startExpanded) {
-                    setIsResultsExpanded(false)
-                } else if (deltaY < -threshold && !startExpanded) {
-                    setIsResultsExpanded(true)
+                if (deltaY > threshold) {
+                    // 아래로 드래그 - 접기
+                    if (startState === 'expanded') {
+                        setResultsState('partial')
+                    } else if (startState === 'partial') {
+                        setResultsState('collapsed')
+                    }
+                } else if (deltaY < -threshold) {
+                    // 위로 드래그 - 펼치기
+                    if (startState === 'collapsed') {
+                        setResultsState('partial')
+                    } else if (startState === 'partial') {
+                        setResultsState('expanded')
+                    }
                 }
             }
         }
@@ -73,14 +83,16 @@ const RestaurantSearchTab = ({ onTabChange }: { onTabChange: () => void }) => {
             <div className="kakao-map-container">
                 <KakaoMap keyword={keyword} onPlacesChange={handlePlacesChange} onMarkerClick={handleMarkerClick} />
                 {places.length > 0 && (
-                    <div className={`search-results ${isResultsExpanded ? 'expanded' : 'collapsed'}`}>
+                    <div className={`search-results ${resultsState}`}>
                         <div className="drag-handle" onMouseDown={handleDragStart} onTouchStart={handleDragStart}>
                             <div className="drag-indicator"></div>
                         </div>
                         <div className="search-results-header">
                             <h3>검색 결과 ({places.length}개)</h3>
                         </div>
-                        <div className={`search-results-list ${isResultsExpanded ? 'expanded' : 'collapsed'}`}>
+                        <div
+                            className={`search-results-list ${resultsState === 'collapsed' ? 'collapsed' : 'expanded'}`}
+                        >
                             {places.map((place, index) => (
                                 <div
                                     key={place.id || index}
