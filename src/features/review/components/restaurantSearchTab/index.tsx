@@ -81,7 +81,13 @@ const RestaurantSearchTab = ({ onTabChange }: { onTabChange: () => void }) => {
             <p className="description">어디에 다녀오셨나요?</p>
             <Input id="restaurant-name" line onChange={(e) => setKeyword(e.target.value)} placeholder="식당 검색하기" />
             <div className="kakao-map-container">
-                <KakaoMap keyword={keyword} onPlacesChange={handlePlacesChange} onMarkerClick={handleMarkerClick} />
+                <KakaoMap
+                    keyword={keyword}
+                    onPlacesChange={handlePlacesChange}
+                    onMarkerClick={handleMarkerClick}
+                    selectedPlaceId={selectedPlace?.id || null}
+                    resultsState={resultsState}
+                />
                 {places.length > 0 && (
                     <div className={`search-results ${resultsState}`}>
                         <div className="drag-handle" onMouseDown={handleDragStart} onTouchStart={handleDragStart}>
