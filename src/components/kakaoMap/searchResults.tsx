@@ -24,7 +24,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         if (!dragHandle) return
 
         const handleTouchStart = (e: TouchEvent) => {
-            onDragStart(e as any)
+            onDragStart(e as unknown as React.MouseEvent | React.TouchEvent)
         }
 
         // 터치 이벤트를 passive: false로 수동 등록
