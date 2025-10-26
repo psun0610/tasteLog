@@ -23,4 +23,19 @@
             }
         }
     }
+
+    &.line {
+        > input {
+            border: none;
+            background-color: transparent;
+            border-bottom: 0.1rem solid $cream-600;
+            border-radius: 0;
+
+            &:focus {
+                outline: none;
+                border-bottom: 0.2rem solid $cream-600;
+                transform: translateY(0.1rem);
+            }
+        }
+    }
 }

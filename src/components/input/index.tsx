@@ -4,13 +4,14 @@ import './styles.scss'
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string
     id: string
-    type: string
+    type?: string
+    line?: boolean
     children?: React.ReactNode
 }
 
-const Input = ({ label, id, type, children, ...props }: InputProps) => {
+const Input = ({ label, id, type = 'text', line = false, children, ...props }: InputProps) => {
     return (
-        <div className="input-container">
+        <div className={classNames('input-container', { line })}>
             {label && (
                 <label htmlFor={id} className={classNames({ required: props.required })}>
                     {label}

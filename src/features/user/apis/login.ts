@@ -1,14 +1,14 @@
 import { supabase } from '@/supabase'
 import { ILoginParams } from '../types/login'
 
-const signIn = async ({ email, password }: ILoginParams) => {
+const logIn = async ({ email, password }: ILoginParams) => {
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
     })
 
-    if (error) throw error
+    if (error) return error
     return data
 }
 
-export default signIn
+export default logIn

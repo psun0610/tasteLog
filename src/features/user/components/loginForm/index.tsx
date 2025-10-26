@@ -61,6 +61,7 @@ const LoginForm = () => {
                             name="password"
                             value={input.password}
                             onChange={handleInputChange}
+                            onKeyUp={(e) => e.key === 'Enter' && onLogin()}
                         />
                         <button onClick={() => setHidden((prev) => !prev)}>{hidden ? <FiEye /> : <FiEyeOff />}</button>
                     </div>
@@ -91,15 +92,15 @@ const LoginForm = () => {
 
             <div className="login-footer">
                 <div>
-                    <p>비밀번호를 잊으셨나요?</p>
-                    <p>
-                        <Link to="/findPassword">비밀번호 찾기</Link>
-                    </p>
-                </div>
-                <div>
                     <p>아직 회원이 아니신가요?</p>
                     <p>
                         <Link to="/signup">회원가입하기</Link>
+                    </p>
+                </div>
+                <div>
+                    <p>비밀번호를 잊으셨나요?</p>
+                    <p>
+                        <Link to="/findPassword">비밀번호 찾기</Link>
                     </p>
                 </div>
             </div>
