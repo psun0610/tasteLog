@@ -1,13 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-
-export interface Place {
-    id?: string
-    place_name?: string
-    address_name?: string
-    road_address_name?: string
-    y: string
-    x: string
-}
+import { Place } from './types'
 
 interface KakaoMapProps {
     keyword?: string // 검색 키워드

@@ -1,4 +1,5 @@
-import KakaoMap, { Place } from '@/components/kakaoMap'
+import KakaoMap from '@/components/kakaoMap'
+import { Place } from '@/components/kakaoMap/types'
 import './styles.scss'
 import Input from '@/components/input'
 import Button from '@/components/button'
