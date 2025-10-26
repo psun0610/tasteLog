@@ -85,7 +85,7 @@ const SignupInputs = ({ handleNext }: { handleNext: () => void }) => {
                     onClick={handleNext}
                     color="primary"
                     className="large"
-                    // disabled={!isActiveNext}
+                    disabled={!isActiveNext}
                 />
             </div>
         </div>
