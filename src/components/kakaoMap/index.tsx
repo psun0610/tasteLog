@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Place } from './types'
 import SearchResults from './searchResults'
+import { useKakaoMapSearch } from './hooks/useKakaoMapSearch'
 import './styles.scss'
 
 interface KakaoMapProps {
@@ -28,29 +29,14 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [map, setMap] = useState<any>(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const markersRef = useRef<any[]>([]) // 마커는 useRef로 관리
-    const markersDataRef = useRef<Place[]>([]) // 마커 데이터를 저장
-    const [places, setPlaces] = useState<Place[]>([]) // 검색 결과 상태
-    const [resultsState, setResultsState] = useState<'collapsed' | 'partial' | 'expanded'>('partial') // 검색결과 상태
-
-    // 콜백 함수들을 useRef로 관리하여 불필요한 리렌더링 방지
+    const markersRef = useRef<any[]>([])
+    const markersDataRef = useRef<Place[]>([])
+    const [resultsState, setResultsState] = useState<'collapsed' | 'partial' | 'expanded'>('partial')
     const onMarkerClickRef = useRef(onMarkerClick)
-    const onPlacesChangeRef = useRef(onPlacesChange)
 
-    // 콜백 함수 업데이트
     useEffect(() => {
         onMarkerClickRef.current = onMarkerClick
     }, [onMarkerClick])
-
-    useEffect(() => {
-        onPlacesChangeRef.current = onPlacesChange
-    }, [onPlacesChange])
-
-    // 검색 결과 상태 업데이트
-    const handlePlacesChange = useCallback((newPlaces: Place[]) => {
-        setPlaces(newPlaces)
-        onPlacesChangeRef.current?.(newPlaces)
-    }, [])
 
     // 장소 선택 핸들러
     const handlePlaceSelect = useCallback((place: Place) => {
@@ -162,9 +148,9 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
         }
     }
 
-    // SDK 동적 로딩 + 지도 초기화 (한 번만 실행)
+    // SDK 동적 로딩 + 지도 초기화
     useEffect(() => {
-        if (map) return // 이미 지도가 있으면 재생성하지 않음
+        if (map) return
 
         const loadKakaoSDK = () =>
             new Promise<void>((resolve) => {
@@ -187,50 +173,66 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
             })
             setMap(mapInstance)
         })
-    }, []) // 의존성 배열을 비워서 한 번만 실행
+    }, [])
 
-    // 키워드 검색
-    useEffect(() => {
-        if (!map || !keyword || !window.kakao) return
+    // 식당 필터링 함수
+    const filterRestaurants = useCallback((data: Place[]): Place[] => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return data.filter((place: any) => {
+            const categoryCode = place.category_group_code
+            const categoryName = place.category_name || ''
+            return (
+                categoryCode === 'FD6' ||
+                categoryName.includes('음식점') ||
+                categoryName.includes('식당') ||
+                categoryName.includes('레스토랑') ||
+                categoryName.includes('카페')
+            )
+        })
+    }, [])
 
-        const kakao = window.kakao
-        const ps = new kakao.maps.services.Places()
+    // 마커 생성 함수
+    const createMarkers = useCallback(
+        (restaurantData: Place[], shouldSetBounds: boolean = false) => {
+            if (!map || !window.kakao) return
 
-        // 기존 마커 제거
-        markersRef.current.forEach((m) => m.setMap(null))
-        markersRef.current = []
+            const kakao = window.kakao
+            const bounds = new kakao.maps.LatLngBounds()
 
-        ps.keywordSearch(keyword, (data: Place[], status: string) => {
-            if (status === kakao.maps.services.Status.OK) {
-                const bounds = new kakao.maps.LatLngBounds()
-                markersDataRef.current = data // 마커 데이터 저장
-
-                data.forEach((place) => {
-                    const marker = new kakao.maps.Marker({
-                        map,
-                        position: new kakao.maps.LatLng(place.y, place.x),
-                    })
-
-                    // 마커에 place 정보 저장
-                    marker.place = place
-
-                    kakao.maps.event.addListener(marker, 'click', () => {
-                        moveToSelectedPlace(place)
-                        onMarkerClickRef.current?.(place)
-                    })
-
-                    markersRef.current.push(marker)
-                    bounds.extend(new kakao.maps.LatLng(place.y, place.x))
+            restaurantData.forEach((place) => {
+                const marker = new kakao.maps.Marker({
+                    map,
+                    position: new kakao.maps.LatLng(place.y, place.x),
                 })
 
+                marker.place = place
+
+                kakao.maps.event.addListener(marker, 'click', () => {
+                    moveToSelectedPlace(place)
+                    onMarkerClickRef.current?.(place)
+                })
+
+                markersRef.current.push(marker)
+                bounds.extend(new kakao.maps.LatLng(place.y, place.x))
+            })
+
+            if (shouldSetBounds && restaurantData.length > 0) {
                 map.setBounds(bounds)
-                handlePlacesChange(data)
-            } else {
-                handlePlacesChange([])
-                markersDataRef.current = []
             }
-        })
-    }, [keyword, map, handlePlacesChange])
+        },
+        [map, resultsState]
+    )
+
+    // 검색 훅 사용
+    const { places, hasNextPage, isLoading, loadNextPage } = useKakaoMapSearch({
+        keyword,
+        map,
+        onPlacesChange,
+        filterRestaurants,
+        createMarkers,
+        markersRef,
+        markersDataRef,
+    })
 
     // 부모가 직접 마커 전달 시
     useEffect(() => {
@@ -265,9 +267,9 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
 
         if (markersData.length) {
             map.setBounds(bounds)
-            handlePlacesChange(markersData)
+            markersDataRef.current = markersData
         }
-    }, [markersData, map, handlePlacesChange])
+    }, [markersData, map])
 
     // 선택된 마커 업데이트 (지도 리렌더링 없이)
     useEffect(() => {
@@ -293,7 +295,7 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
     }, [selectedPlaceId, map, resultsState])
 
     return (
-        <div className="kakao-map-wrapper" style={{ width: '100%', height: '100%', position: 'relative' }}>
+        <div className="kakao-map-wrapper">
             <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
             {showSearchResults && (
                 <SearchResults
@@ -302,6 +304,9 @@ const KakaoMap: React.FC<KakaoMapProps> = ({
                     resultsState={resultsState}
                     onPlaceSelect={handlePlaceSelect}
                     onDragStart={handleDragStart}
+                    onLoadMore={loadNextPage}
+                    hasNextPage={hasNextPage}
+                    isLoading={isLoading}
                 />
             )}
         </div>

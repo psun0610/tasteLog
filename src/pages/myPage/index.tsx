@@ -10,8 +10,7 @@ const MyPage = () => {
         onSuccess: () => {
             navigate('/login')
         },
-        onError: (err) => {
-            console.log(err)
+        onError: () => {
             setAlert({ isOpen: true, message: '로그아웃에 실패했습니다' })
         },
     })
