@@ -1,7 +1,8 @@
 #review-tab {
     @include flex(center, center, column);
-    gap: 5rem;
+    gap: 3rem;
     margin: 2rem;
+    padding-bottom: calc(2rem + $navbar-height);
 
     .title {
         font-weight: 500;
@@ -10,8 +11,8 @@
 
         & > span {
             font-size: 1.8rem;
-            color: $color-primary;
-            border-bottom: 2px solid $color-primary;
+            color: $color-primary-400;
+            border-bottom: 2px solid $color-primary-400;
         }
 
         & > p {
@@ -32,18 +33,18 @@
             gap: 0.8rem;
             width: 100%;
         }
+
+        .review-textarea-box {
+            @include flex(center, center, column);
+            gap: 0.8rem;
+            width: 100%;
+        }
     }
 
     label {
         font-size: 1.6rem;
         font-weight: 500;
         color: $text-secondary;
-    }
-
-    .review-textarea-box {
-        @include flex(center, center, column);
-        gap: 0.8rem;
-        width: 100%;
     }
 
     & > label {
