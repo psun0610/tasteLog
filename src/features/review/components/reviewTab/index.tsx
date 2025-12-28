@@ -1,8 +1,9 @@
 import './styles.scss'
 import StarRating from '@/components/starRating'
 import Button from '@/components/button'
+import { Place } from '@/components/kakaoMap/types'
 
-const ReviewTab = () => {
+const ReviewTab = ({ selectedPlace }: { selectedPlace: Place | null }) => {
     const starList = [
         {
             label: '맛',
@@ -28,10 +29,10 @@ const ReviewTab = () => {
 
     return (
         <div id="review-tab">
-            <p className="title">
-                <span>남산에</span>
+            <div className="title">
+                <span>{selectedPlace?.place_name}</span>
                 <p>이 장소에 대해 알려주세요!</p>
-            </p>
+            </div>
             <ul className="review-star-rating">
                 {starList.map((star) => (
                     <li key={star.value}>
