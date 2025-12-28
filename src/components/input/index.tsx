@@ -3,7 +3,7 @@ import './styles.scss'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string
-    id: string
+    id?: string
     type?: string
     line?: boolean
     children?: React.ReactNode
