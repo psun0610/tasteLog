@@ -22,12 +22,10 @@ const LoginForm = () => {
     }
 
     const { mutate: signIn } = useUserApi.signIn({
-        onSuccess: (res) => {
-            console.log(res)
+        onSuccess: () => {
             navigate('/', { replace: true })
         },
-        onError: (err) => {
-            console.log(err)
+        onError: () => {
             setAlert({ isOpen: true, message: '이메일 또는 비밀번호를 확인해주세요' })
         },
     })

@@ -14,13 +14,10 @@ const SignupProfile = () => {
         useShallow((state) => [state.input, state.action.setInput, state.action.setProfileImg])
     )
     const { mutate: signUp } = useUserApi.signUp({
-        onSuccess: (res) => {
-            console.log(res)
+        onSuccess: () => {
             navigate('/', { replace: true })
         },
-        onError: (err) => {
-            console.log(err)
-        },
+        onError: () => {},
     })
 
     const onSubmit = () => {
