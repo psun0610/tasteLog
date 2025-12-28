@@ -1,5 +1,6 @@
-import { useRef, useEffect } from 'react'
 import { Place } from './types'
+import { useInfiniteScroll } from './hooks/useInfiniteScroll'
+import { useDragHandle } from './hooks/useDragHandle'
 import './searchResults.scss'
 
 interface SearchResultsProps {
@@ -8,6 +9,9 @@ interface SearchResultsProps {
     resultsState: 'collapsed' | 'partial' | 'expanded'
     onPlaceSelect: (place: Place) => void
     onDragStart: (e: React.MouseEvent | React.TouchEvent) => void
+    onLoadMore?: () => void
+    hasNextPage?: boolean
+    isLoading?: boolean
 }
 
 const SearchResults: React.FC<SearchResultsProps> = ({
@@ -16,24 +20,17 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     resultsState,
     onPlaceSelect,
     onDragStart,
+    onLoadMore,
+    hasNextPage = false,
+    isLoading = false,
 }) => {
-    const dragHandleRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        const dragHandle = dragHandleRef.current
-        if (!dragHandle) return
-
-        const handleTouchStart = (e: TouchEvent) => {
-            onDragStart(e as unknown as React.MouseEvent | React.TouchEvent)
-        }
-
-        // 터치 이벤트를 passive: false로 수동 등록
-        dragHandle.addEventListener('touchstart', handleTouchStart, { passive: false })
-
-        return () => {
-            dragHandle.removeEventListener('touchstart', handleTouchStart)
-        }
-    }, [onDragStart])
+    const dragHandleRef = useDragHandle({ onDragStart })
+    const listRef = useInfiniteScroll({
+        hasNextPage,
+        isLoading,
+        onLoadMore,
+        itemsCount: places.length,
+    })
 
     if (places.length === 0) return null
 
@@ -42,10 +39,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({
             <div className="drag-handle" ref={dragHandleRef} onMouseDown={onDragStart}>
                 <div className="drag-indicator"></div>
             </div>
-            <div className="search-results-header">
-                <h3>검색 결과 ({places.length}개)</h3>
-            </div>
-            <div className={`search-results-list ${resultsState === 'collapsed' ? 'collapsed' : 'expanded'}`}>
+
+            <div
+                ref={listRef}
+                className={`search-results-list ${resultsState === 'collapsed' ? 'collapsed' : 'expanded'}`}
+            >
                 {places.map((place, index) => (
                     <div
                         key={place.id || index}
@@ -56,6 +54,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                         <div className="place-address">{place.road_address_name || place.address_name}</div>
                     </div>
                 ))}
+                {isLoading && (
+                    <div className="loading-indicator">
+                        <div className="loading-spinner"></div>
+                        <span>더 많은 결과를 불러오는 중...</span>
+                    </div>
+                )}
+                {!hasNextPage && places.length > 0 && <div className="no-more-results">모든 결과를 불러왔습니다</div>}
             </div>
         </div>
     )
