@@ -8,10 +8,9 @@ interface ModalProps {
     onClose: () => void
     children: React.ReactNode
     buttonRender?: () => React.ReactNode
-    hasCloseButton?: boolean
 }
 
-const Modal = ({ isOpen, onClose, children, buttonRender, hasCloseButton = false }: ModalProps) => {
+const Modal = ({ isOpen, onClose, children, buttonRender }: ModalProps) => {
     const { shouldRender, isFadingOut } = useFadeOut(isOpen)
     if (!shouldRender) return null
 
@@ -21,7 +20,7 @@ const Modal = ({ isOpen, onClose, children, buttonRender, hasCloseButton = false
                 <div className="modal-body">{children}</div>
                 <div className="modal-footer">
                     {buttonRender && buttonRender()}
-                    {hasCloseButton && <Button text="닫기" color="gray" onClick={onClose} />}
+                    {onClose && <Button text="닫기" color="gray" onClick={onClose} />}
                 </div>
             </div>
         </div>,
