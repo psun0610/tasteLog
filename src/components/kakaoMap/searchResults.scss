@@ -51,29 +51,13 @@
         }
     }
 
-    .search-results-header {
-        border-bottom: 0.1rem solid #f0f0f0;
-        border-radius: 0 0 1.2rem 1.2rem;
-        display: flex;
-        align-items: center;
-        padding: 0.8rem 1rem;
-        min-height: 4.5rem;
-
-        h3 {
-            margin: 0;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #1f2937;
-        }
-    }
-
     .search-results-list {
         overflow-y: auto;
         padding: 0.5rem 0;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         opacity: 1;
         transform: translateY(0);
-        height: calc(100% - 7.5rem);
+        height: calc(100% - 3rem);
 
         &.collapsed {
             max-height: 0;
@@ -136,5 +120,21 @@
                 line-height: 1.3;
             }
         }
+
+        .no-more-results {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            font-size: 1.2rem;
+            color: #9ca3af;
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

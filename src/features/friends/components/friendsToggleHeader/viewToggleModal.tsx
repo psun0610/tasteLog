@@ -15,7 +15,7 @@ const ViewToggleModal = ({ friend, isOpen, onClose }: ViewToggleModalProps) => {
     }
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} hasCloseButton>
+        <Modal isOpen={isOpen} onClose={onClose}>
             {friend && (
                 <div id="view-toggle-modal">
                     <header>
