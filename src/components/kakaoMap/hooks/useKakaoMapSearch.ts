@@ -154,7 +154,6 @@ export const useKakaoMapSearch = ({
         if (currentKeywordRef.current !== keyword) {
             markersRef.current.forEach((m) => m.setMap(null))
             markersRef.current = []
-            setPlaces([])
             setCurrentPage(1)
             setHasNextPage(false)
             currentKeywordRef.current = keyword

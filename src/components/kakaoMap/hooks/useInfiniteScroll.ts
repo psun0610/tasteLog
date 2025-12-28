@@ -15,7 +15,7 @@ export const useInfiniteScroll = ({
     threshold = 200,
     itemsCount = 0,
 }: UseInfiniteScrollProps) => {
-    const listRef = useRef<HTMLDivElement>(null)
+    const listRef = useRef<HTMLUListElement>(null)
 
     // 스크롤 핸들러
     const handleScroll = useCallback(() => {
